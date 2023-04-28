@@ -4,7 +4,28 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+const heart = document.querySelector('.like');
+heart.addEventListener('click', function(){
+  mimicServerCall()
+  .then(function(response){
+    if (heart.classList.contains('activated-heart')) {
+      heart.classList.remove('activated-heart');
+    } else{
+      heart.classList.add('activated-heart');
+    }
+  })
 
+  .catch(function(error) {
+    errorModal.classList.remove('hidden');
+    const errorAlert = errorModal.querySelector('p');
+    errorAlert.textContent = error;
+    setTimeout(function(){
+      errorModal.classList.add('hidden');
+    }, 3000);
+  });
+
+
+});
 
 
 //------------------------------------------------------------------------------
